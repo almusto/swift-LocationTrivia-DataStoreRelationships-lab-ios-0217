@@ -9,7 +9,7 @@
 import Foundation
 
 
-final class LocationsDataStore: AddLocationDelegate {
+final class LocationsDataStore {
   var locations: [Location] = []
 
 
@@ -37,18 +37,6 @@ final class LocationsDataStore: AddLocationDelegate {
 
     self.locations.append(contentsOf:[bowlingGreen, empireState, ladyLiberty])
   }
-
-  func createLocation(location: Location) {
-    locations.append(location)
-  }
-
-  func addTrivium(toLocation location:  Location, trivium: Trivium) {
-    location.trivia.append(contentsOf: [trivium])
-
-  }
-
-
-  
 
   
 }

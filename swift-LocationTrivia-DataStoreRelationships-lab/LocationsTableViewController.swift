@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LocationsTableViewController: UITableViewController {
+class LocationsTableViewController: UITableViewController, AddLocationDelegate {
 
   var currentLocations = [Location]()
   let store = LocationsDataStore.sharedInstance
@@ -86,10 +86,19 @@ class LocationsTableViewController: UITableViewController {
         }
     } else if segue.identifier == "modal" {
       let dest = segue.destination as! AddLocationViewController
-      dest.delegate = store
+      dest.delegate = self
 
     }
 
+
+  }
+
+  func createLocation(location: Location) {
+    store.locations.append(location)
+  }
+
+  func addTrivium(toLocation location:  Location, trivium: Trivium) {
+    location.trivia.append(contentsOf: [trivium])
 
   }
 

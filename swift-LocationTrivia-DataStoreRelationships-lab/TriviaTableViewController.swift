@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TriviaTableViewController: UITableViewController {
+class TriviaTableViewController: UITableViewController, AddLocationDelegate {
 
   var location: Location!
   var triviaArray = [Trivium]()
@@ -75,9 +75,18 @@ class TriviaTableViewController: UITableViewController {
       )! as! AddTriviaViewController
 //    let vc = AddTriviaViewController() as
     vc.modalTransitionStyle = .coverVertical
-    vc.delegate = store
+    vc.delegate = self
     vc.location = location
     self.present(vc, animated: true, completion: nil)
+
+  }
+
+  func createLocation(location: Location) {
+    store.locations.append(location)
+  }
+
+  func addTrivium(toLocation location:  Location, trivium: Trivium) {
+    location.trivia.append(contentsOf: [trivium])
 
   }
 
